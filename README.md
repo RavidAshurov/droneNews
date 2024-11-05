@@ -10,12 +10,22 @@ The Application is constructed of 3 projects:
 
 Database used for this app is SQLite (chosen for the easy setup and the size and expected use of the data).
 
-Project was created on Node 23.1.0 environment.
+Project was created on Node 23.1.0 environment. Please make sure to have npm and node installed.
 
-### Exec command (to be run from project root)
+### To start the application
 
-```
-npm run start
-```
+1. create a `.env` file in the project root, and set the following content
 
-Once command run, application will be available on: <http://localhost:4000/> (link should be printed out in console)
+   ```
+   API_KEY=<api key for news api>
+   DB_LOCATION=<local path that the process will write and SQLITE database to>
+   ```
+
+2. execute the following: (from project root)
+
+   ```
+   npm i
+   npm run start
+   ```
+
+   Once command run, application will be available on: <http://localhost:4000/> (link should be printed out in console)

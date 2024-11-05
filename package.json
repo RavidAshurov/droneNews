@@ -11,5 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^9.1.0"
-  }
+  },
+  "workspaces": [
+    "api-server",
+    "client-app",
+    "data-collection-ms",
+    "commons"
+  ]
 }

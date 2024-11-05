@@ -1,6 +1,6 @@
 const NewsAPI = require('newsapi')
 const stringHash = require('string-hash')
-const HeadlinesModel = require('./db/HeadlinesModel')
+const { HeadlinesModel } = require('@droneNews/commons')
 const HEADLINE_TTL_MS = process.env.HEADLINE_TTL_MS || 1000 * 60 * 60 * 24 * 5 // default to 5 days if not provided
 const SYNC_HEADLINES_INTERVAL_MS = 3 * 60 * 1000 // 3 minutes
 const SEARCH_KEYWORDS = [

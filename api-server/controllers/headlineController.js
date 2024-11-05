@@ -1,4 +1,4 @@
-const HeadlinesModel = require('../db/HeadlinesModel')
+const { HeadlinesModel } = require('@dronenews/commons')
 const { Op } = require('sequelize')
 const SEARCH_FIELDS = ['title', 'content', 'author', 'description']
 
