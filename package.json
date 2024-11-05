@@ -4,10 +4,12 @@
   "description": "web application for drone related news curating ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \" cd ./data-collection-ms && npm run start\" \"cd ./api-server && npm run start\" \"cd ./client-app && sleep 2 && npm run dev\""
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "concurrently": "^9.1.0"
   }
 }

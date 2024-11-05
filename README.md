@@ -17,3 +17,5 @@ Project was created on Node 23.1.0 environment.
 ```
 npm run start
 ```
+
+Once command run, application will be available on: <http://localhost:4000/> (link should be printed out in console)
