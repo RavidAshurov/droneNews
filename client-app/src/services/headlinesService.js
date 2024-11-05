@@ -1,5 +1,5 @@
 const API_SERVER_URL =
-  import.meta.env.VITE_API_SERVER_URL || 'http://localhost:3000/'
+  import.meta.env.VITE_API_SERVER_URL || 'http://localhost:3000'
 
 export async function fetchHeadlines(searchWord) {
   if (searchWord && !searchWord.match(/^[ a-zA-Z0-9,.-:]{2,}$/)) {
