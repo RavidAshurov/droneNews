@@ -61,8 +61,9 @@ export default {
           SNACKBAR_TYPES.SUCCESS,
         )
       } catch (err) {
+        this.headlines = []
         this.$refs.snackbar.showSnackbar(
-          'Failed to load headlines.',
+          err.message || 'Failed to load headlines.',
           SNACKBAR_TYPES.ERROR,
         )
       }
