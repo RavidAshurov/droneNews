@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 class="page-title">Drone News</h1>
+    <h1 class="page-title"><IconDrone class="drone-icon" />Drone News</h1>
     <div class="search-bar">
       <label for="search" class="search-label">Search</label>
       <input
@@ -10,6 +10,7 @@
         v-model="keyword"
         @keydown.enter.prevent.stop="filterNews"
       />
+      <IconSearch class="search-icon" @click="filterNews" />
     </div>
   </div>
   <div class="news-items">
@@ -22,16 +23,26 @@
 import { fetchHeadlines } from '../services/headlinesService.js'
 import NewsItem from '../components/NewsItem.vue'
 import Snackbar, { SNACKBAR_TYPES } from '../components/Snackbar.vue'
+import IconDrone from '@/components/icons/IconDrone.vue'
+import IconSearch from '@/components/icons/IconSearch.vue'
+
 export default {
   name: 'HomeView',
-  components: { NewsItem, Snackbar },
+  components: {
+    NewsItem,
+    Snackbar,
+    IconDrone,
+    IconSearch,
+  },
   async created() {
     try {
       this.headlines = (await fetchHeadlines()) || []
     } catch (err) {
-      this.$refs.snackbar.showSnackbar(
-        'Failed to load headlines.',
-        SNACKBAR_TYPES.ERROR,
+      this.$nextTick(() =>
+        this.$refs.snackbar.showSnackbar(
+          'Failed to load headlines.',
+          SNACKBAR_TYPES.ERROR,
+        ),
       )
     }
   },
@@ -45,6 +56,10 @@ export default {
     async filterNews() {
       try {
         this.headlines = (await fetchHeadlines(this.keyword)) || []
+        this.$refs.snackbar.showSnackbar(
+          'Headlines filtered',
+          SNACKBAR_TYPES.SUCCESS,
+        )
       } catch (err) {
         this.$refs.snackbar.showSnackbar(
           'Failed to load headlines.',
@@ -58,12 +73,20 @@ export default {
 
 <style scoped>
 .page-title {
-  color: #a4c4ff;
+  color: lightblue;
   font-weight: bolder;
   font-size: 3rem;
-  padding: 0px 1rem;
+  padding: 1rem;
   border-bottom: 4px dotted;
   margin: 1rem 0;
+  display: flex;
+  column-gap: 1rem;
+
+  .drone-icon {
+    width: 3rem;
+    color: lightblue;
+    transform: rotate(55deg);
+  }
 }
 .news-items {
   padding-top: 2rem;
@@ -76,7 +99,7 @@ export default {
   column-gap: 0.5rem;
   row-gap: 0.5rem;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
 
   .search-input {
@@ -94,6 +117,24 @@ export default {
     color: #deb887;
     font-weight: bold;
     font-size: 1.2rem;
+  }
+
+  .search-icon {
+    width: 1.5rem;
+    background: lightblue;
+    border-radius: 40%;
+    padding: 0.3rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+
+    &:active {
+      filter: brightness(1.1);
+      transform: translateY(3px);
+    }
   }
 }
 </style>

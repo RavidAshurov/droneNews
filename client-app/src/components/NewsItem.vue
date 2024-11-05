@@ -15,14 +15,16 @@
       {{ item.content }}
     </details>
     <a v-if="item.url" :href="item.url" class="link-to-article"
-      >Read Full article -></a
-    >
+      >Read Full article <IconLink class="link-icon"
+    /></a>
   </div>
 </template>
 
 <script>
+import IconLink from './icons/IconLink.vue'
 export default {
   name: 'NewsItem',
+  components: { IconLink },
   props: {
     item: {
       required: true,
@@ -48,15 +50,17 @@ export default {
   background: #f5f3f0;
 
   .title {
-    color: hsl(0deg 0% 51.96%);
+    color: hsl(0deg 0% 28.36%);
     grid-area: title;
     font-weight: bold;
+    margin: 1rem 0;
   }
 
   .author {
     font-size: 0.9rem;
     font-weight: bold;
     grid-area: author;
+    color: #77a2bf;
   }
 
   .description {
@@ -72,10 +76,23 @@ export default {
 
   .details {
     grid-area: details;
+    line-height: 1.5rem;
+    color: #8f5c0f;
   }
 
   .link-to-article {
     grid-area: link;
+    text-decoration: underline;
+    text-decoration-color: #77a2bf;
+    color: #8f5c0f;
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+
+    .link-icon {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }
 
